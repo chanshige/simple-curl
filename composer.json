@@ -1,0 +1,34 @@
+{
+  "name": "chanshige/simple-curl",
+  "description": "A simple cURL class.",
+  "keywords": [
+    "curl"
+  ],
+  "type": "library",
+  "authors": [
+    {
+      "name": "Shigeki Tanaka",
+      "email": "dev@shigeki.tokyo"
+    }
+  ],
+  "license": "MIT",
+  "require": {
+    "php": ">=7.1.0",
+    "ext-curl": "*"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "*",
+    "phpmd/phpmd": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Chanshige\\SimpleCurl\\": "src"
+    }
+  },
+  "scripts": {
+    "test": [
+      "phpmd src text ./phpmd.xml",
+      "phpcs src"
+    ]
+  }
+}
