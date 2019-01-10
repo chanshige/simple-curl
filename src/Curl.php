@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Chanshige\SimpleCurl;
 
+use Chanshige\SimpleCurl\Exception\CurlException;
+
 /**
  * Class Curl
  *
@@ -14,20 +16,27 @@ final class Curl implements CurlInterface
     private $resource;
 
     /**
+     * Initialize a cURL session and clone object.
+     *
      * @param string $url
+     * @return CurlInterface
      * @throws CurlException
      */
-    public function init(string $url = '')
+    public function init(string $url = ''): CurlInterface
     {
         $handle = curl_init($url);
         if ($handle === false) {
             throw new CurlException('failed init curl.');
         }
+        $clone = clone $this;
+        $clone->resource = $handle;
 
-        $this->resource = $handle;
+        return $clone;
     }
 
     /**
+     * Set an option for a cURL transfer.
+     *
      * @param int   $option
      * @param mixed $value
      * @return bool
@@ -38,6 +47,8 @@ final class Curl implements CurlInterface
     }
 
     /**
+     * Set multiple options for a cURL transfer.
+     *
      * @param array $options
      * @return bool
      */

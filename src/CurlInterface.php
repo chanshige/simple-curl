@@ -8,7 +8,7 @@ namespace Chanshige\SimpleCurl;
  */
 interface CurlInterface
 {
-    public function init(string $url);
+    public function init(string $url): CurlInterface;
 
     public function close();
 
@@ -24,5 +24,5 @@ interface CurlInterface
 
     public function setOpt(int $option, $value): bool;
 
-    public function version(int $age = CURLVERSION_NOW): array;
+    public function version(int $age): array;
 }
