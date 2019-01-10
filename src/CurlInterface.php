@@ -22,7 +22,7 @@ interface CurlInterface
 
     public function setOptArray(array $options);
 
-    public function setOpt(int $option, bool $value);
+    public function setOpt(int $option, $value);
 
     public function version(int $age): array;
 }

@@ -37,12 +37,12 @@ final class Curl implements CurlInterface
     /**
      * Set an option for a cURL transfer.
      *
-     * @param int  $option
-     * @param bool $value
+     * @param int      $option
+     * @param int|bool $value
      * @return void
      * @throws CurlException
      */
-    public function setOpt(int $option, bool $value)
+    public function setOpt(int $option, $value)
     {
         if (!curl_setopt($this->resource, $option, $value)) {
             throw new CurlException('Failed to cURL option.');
@@ -73,9 +73,7 @@ final class Curl implements CurlInterface
     {
         $response = curl_exec($this->resource);
         if ($response === false) {
-            $httpCode = $this->getInfo(CURLINFO_HTTP_CODE);
-            $this->close();
-            throw new CurlException('execute failed.', $httpCode);
+            throw new CurlException($this->error(), $this->errno());
         }
 
         return $response;
