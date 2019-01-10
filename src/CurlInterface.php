@@ -20,9 +20,9 @@ interface CurlInterface
 
     public function getInfo(int $opt = 0);
 
-    public function setOptArray(array $options): bool;
+    public function setOptArray(array $options);
 
-    public function setOpt(int $option, $value): bool;
+    public function setOpt(int $option, bool $value);
 
     public function version(int $age): array;
 }

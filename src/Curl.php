@@ -26,7 +26,7 @@ final class Curl implements CurlInterface
     {
         $handle = curl_init($url);
         if ($handle === false) {
-            throw new CurlException('failed init curl.');
+            throw new CurlException('Failed to cURL initialized.');
         }
         $clone = clone $this;
         $clone->resource = $handle;
@@ -37,27 +37,35 @@ final class Curl implements CurlInterface
     /**
      * Set an option for a cURL transfer.
      *
-     * @param int   $option
-     * @param mixed $value
-     * @return bool
+     * @param int  $option
+     * @param bool $value
+     * @return void
+     * @throws CurlException
      */
-    public function setOpt(int $option, $value): bool
+    public function setOpt(int $option, bool $value)
     {
-        return curl_setopt($this->resource, $option, $value);
+        if (!curl_setopt($this->resource, $option, $value)) {
+            throw new CurlException('Failed to cURL option.');
+        }
     }
 
     /**
      * Set multiple options for a cURL transfer.
      *
      * @param array $options
-     * @return bool
+     * @return void
+     * @throws CurlException
      */
-    public function setOptArray(array $options): bool
+    public function setOptArray(array $options)
     {
-        return curl_setopt_array($this->resource, $options);
+        if (!curl_setopt_array($this->resource, $options)) {
+            throw new CurlException('Failed to cURL option.');
+        }
     }
 
     /**
+     * Execute.
+     *
      * @return mixed
      * @throws CurlException
      */
@@ -74,6 +82,8 @@ final class Curl implements CurlInterface
     }
 
     /**
+     * Get information regarding a specific transfer.
+     *
      * @param int $opt
      * @return mixed
      */
@@ -87,6 +97,8 @@ final class Curl implements CurlInterface
     }
 
     /**
+     * Return the last error number.
+     *
      * @return int
      */
     public function errno(): int
@@ -95,6 +107,8 @@ final class Curl implements CurlInterface
     }
 
     /**
+     * Return a string containing the last error for the current session.
+     *
      * @return string
      */
     public function error(): string
@@ -103,6 +117,8 @@ final class Curl implements CurlInterface
     }
 
     /**
+     * Gets cURL version information.
+     *
      * @param int $age
      * @return array
      */
@@ -112,6 +128,8 @@ final class Curl implements CurlInterface
     }
 
     /**
+     * Close a cURL session.
+     *
      * @return void
      */
     public function close(): void
