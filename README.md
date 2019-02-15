@@ -7,4 +7,3 @@ Via Composer
 ``` bash
 $ composer require chanshige/simple-curl
 ```
-  
