@@ -19,7 +19,7 @@ final class Curl implements CurlInterface
      * {@inheritdoc}
      * @throws CurlException
      */
-    public function init(?string $url = ''): CurlInterface
+    public function init(?string $url = null): CurlInterface
     {
         $handle = curl_init($url);
         if ($handle === false) {
