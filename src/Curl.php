@@ -16,13 +16,10 @@ final class Curl implements CurlInterface
     private $resource;
 
     /**
-     * Initialize a cURL session and clone object.
-     *
-     * @param string $url
-     * @return CurlInterface
+     * {@inheritdoc}
      * @throws CurlException
      */
-    public function init(string $url = ''): CurlInterface
+    public function init(?string $url = ''): CurlInterface
     {
         $handle = curl_init($url);
         if ($handle === false) {
@@ -35,11 +32,7 @@ final class Curl implements CurlInterface
     }
 
     /**
-     * Set an option for a cURL transfer.
-     *
-     * @param int      $option
-     * @param int|bool $value
-     * @return void
+     * {@inheritdoc}
      * @throws CurlException
      */
     public function setOpt(int $option, $value)
@@ -50,10 +43,7 @@ final class Curl implements CurlInterface
     }
 
     /**
-     * Set multiple options for a cURL transfer.
-     *
-     * @param array $options
-     * @return void
+     * {@inheritdoc}
      * @throws CurlException
      */
     public function setOptArray(array $options)
@@ -64,9 +54,7 @@ final class Curl implements CurlInterface
     }
 
     /**
-     * Execute.
-     *
-     * @return mixed
+     * {@inheritdoc}
      * @throws CurlException
      */
     public function exec()
@@ -80,24 +68,15 @@ final class Curl implements CurlInterface
     }
 
     /**
-     * Get information regarding a specific transfer.
-     *
-     * @param int $opt
-     * @return mixed
+     * {@inheritdoc}
      */
-    public function getInfo(int $opt = 0)
+    public function getInfo(?int $opt = null)
     {
-        if ($opt === 0) {
-            return curl_getinfo($this->resource);
-        }
-
         return curl_getinfo($this->resource, $opt);
     }
 
     /**
-     * Return the last error number.
-     *
-     * @return int
+     * {@inheritdoc}
      */
     public function errno(): int
     {
@@ -105,9 +84,7 @@ final class Curl implements CurlInterface
     }
 
     /**
-     * Return a string containing the last error for the current session.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function error(): string
     {
@@ -115,10 +92,7 @@ final class Curl implements CurlInterface
     }
 
     /**
-     * Gets cURL version information.
-     *
-     * @param int $age
-     * @return array
+     * {@inheritdoc}
      */
     public function version(int $age = CURLVERSION_NOW): array
     {
@@ -126,9 +100,7 @@ final class Curl implements CurlInterface
     }
 
     /**
-     * Close a cURL session.
-     *
-     * @return void
+     * {@inheritdoc}
      */
     public function close(): void
     {
