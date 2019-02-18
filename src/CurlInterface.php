@@ -14,7 +14,7 @@ interface CurlInterface
      * @param string|null $url
      * @return CurlInterface
      */
-    public function init(?string $url): CurlInterface;
+    public function init(?string $url = null): CurlInterface;
 
     /**
      * Close a cURL session.
@@ -63,8 +63,8 @@ interface CurlInterface
     /**
      * Set an option for a cURL transfer.
      *
-     * @param int      $option
-     * @param int|bool $value
+     * @param int   $option
+     * @param mixed $value
      * @return void
      */
     public function setOpt(int $option, $value);
