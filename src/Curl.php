@@ -19,7 +19,7 @@ final class Curl implements CurlInterface
      * {@inheritdoc}
      * @throws CurlException
      */
-    public function init(?string $url = null): CurlInterface
+    public function init(string $url = ''): CurlInterface
     {
         $handle = curl_init($url);
         if ($handle === false) {
@@ -72,6 +72,10 @@ final class Curl implements CurlInterface
      */
     public function getInfo(?int $opt = null)
     {
+        if (is_null($opt)) {
+            return curl_getinfo($this->resource);
+        }
+
         return curl_getinfo($this->resource, $opt);
     }
 

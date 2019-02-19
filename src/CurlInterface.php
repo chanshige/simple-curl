@@ -11,10 +11,10 @@ interface CurlInterface
     /**
      * Initialize a cURL session and clone object.
      *
-     * @param string|null $url
+     * @param string $url
      * @return CurlInterface
      */
-    public function init(?string $url = null): CurlInterface;
+    public function init(string $url = ''): CurlInterface;
 
     /**
      * Close a cURL session.
