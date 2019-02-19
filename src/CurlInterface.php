@@ -11,10 +11,10 @@ interface CurlInterface
     /**
      * Initialize a cURL session and clone object.
      *
-     * @param string|null $url
+     * @param string $url
      * @return CurlInterface
      */
-    public function init(?string $url): CurlInterface;
+    public function init(string $url = ''): CurlInterface;
 
     /**
      * Close a cURL session.
@@ -63,8 +63,8 @@ interface CurlInterface
     /**
      * Set an option for a cURL transfer.
      *
-     * @param int      $option
-     * @param int|bool $value
+     * @param int   $option
+     * @param mixed $value
      * @return void
      */
     public function setOpt(int $option, $value);
