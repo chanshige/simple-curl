@@ -6,6 +6,6 @@ namespace Chanshige\SimpleCurl\Exception;
  *
  * @package Chanshige\SimpleCurl\Exception
  */
-final class CurlException extends \LogicException
+final class CurlException extends \LogicException implements \Throwable
 {
 }
